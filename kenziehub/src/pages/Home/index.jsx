@@ -1,5 +1,13 @@
+import { useEffect } from "react";
+
 const Home = () => {
-  return <h1>Teste Home</h1>;
+  useEffect(() => {}, []);
+
+  return (
+    <div>
+      <h1>Teste</h1>
+    </div>
+  );
 };
 
 export default Home;
