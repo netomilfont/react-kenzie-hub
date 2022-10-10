@@ -70,9 +70,11 @@ const Login = ({ setUser }) => {
               <p>{errors.password?.message}</p>
 
               <button type="submit">Entrar</button>
+            </Form>
+            <div className="div__register">
               <span>Ainda não possui uma conta?</span>
               <button className="btn__register">Cadastre-se</button>
-            </Form>
+            </div>
           </div>
         </div>
       </ModalLogin>

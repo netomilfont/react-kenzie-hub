@@ -31,6 +31,26 @@ export const ModalLogin = styled.div`
     width: 93%;
   }
 
+  .div__register {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    width: 100%;
+    padding: 25px 18px 0 18px;
+    box-sizing: border-box;
+  }
+
+  .btn__register {
+    background-color: var(--color-grey-1);
+    color: var(--color-grey-0);
+    border: var(--color-grey-1);
+    margin-bottom: 0px;
+    border-radius: 4.06066px;
+    width: 100%;
+    height: 39px;
+  }
+
   @media (min-width: 1024px) {
     .container__form {
       width: 32%;
@@ -52,7 +72,7 @@ export const Form = styled.form`
   align-items: center;
   box-sizing: border-box;
   color: white;
-  padding: 25px 18px;
+  padding: 25px 18px 0 18px;
   gap: 10px;
 
   h3 {
@@ -95,13 +115,6 @@ export const Form = styled.form`
     font-size: 0.875rem;
     font-weight: 500;
     margin-bottom: 15px;
-  }
-
-  .btn__register {
-    background-color: var(--color-grey-1);
-    color: var(--color-grey-0);
-    border: var(--color-grey-1);
-    margin-bottom: 0px;
   }
 
   p {
