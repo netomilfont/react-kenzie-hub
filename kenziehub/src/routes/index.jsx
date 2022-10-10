@@ -1,12 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
-import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
-const RoutesMain = () => (
+const RoutesMain = ({ user, setUser }) => (
   <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/cadastro" element={<h1>Teste</h1>} />
-    <Route path="/dashboard" element={<Dashboard />} />
+    <Route path="/" element={<Login setUser={setUser} />} />
+    <Route path="/" element={<Register />} />
+    <Route
+      path="/dashboard"
+      element={<Dashboard user={user} setUser={setUser} />}
+    />
   </Routes>
 );
 
