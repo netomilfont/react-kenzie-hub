@@ -7,6 +7,8 @@ export const ModalLogin = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
+  animation: appearFromTopLeft 1s;
+  margin-bottom: 20px;
 
   span {
     font-size: 0.625rem;
@@ -37,7 +39,7 @@ export const ModalLogin = styled.div`
     margin: 0 auto;
     margin-bottom: 25px;
     width: 100%;
-    padding: 25px 18px 0 18px;
+    padding: 0px 18px 0 18px;
     box-sizing: border-box;
   }
 
@@ -54,6 +56,27 @@ export const ModalLogin = styled.div`
   @media (min-width: 1024px) {
     .container__form {
       width: 32%;
+    }
+
+    .header__form {
+      width: 29%;
+    }
+
+    .header__form button:hover {
+      background-color: var(--color-grey-2);
+      transition: 0.3s;
+    }
+  }
+
+  @keyframes appearFromTopLeft {
+    0% {
+      opacity: 0;
+      transform: translate(-30%, -30%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
     }
   }
 `;
@@ -86,9 +109,11 @@ export const Form = styled.form`
     font-size: 0.625rem;
     text-align: start;
     width: 100%;
+    color: var(--color-grey-0);
   }
 
-  input {
+  input,
+  select {
     width: 100%;
     height: 39px;
     outline: 0;
@@ -102,7 +127,7 @@ export const Form = styled.form`
   }
 
   input::placeholder {
-    color: var(--color-grey-0);
+    color: var(--color-grey-1);
   }
 
   button {
@@ -127,4 +152,37 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   background-color: var(--color-grey-2);
+`;
+
+export const ModalRegister = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100%;
+  animation: appearFromTopLeft 1s;
+  margin-bottom: 20px;
+
+  .header__form {
+    display: flex;
+    width: 93%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  .header__form h1 {
+    margin-bottom: 0;
+  }
+
+  button {
+    background-color: var(--color-grey-3);
+    color: var(--color-grey-0);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    transition: 0.3s;
+    font-size: 0.675rem;
+  }
 `;

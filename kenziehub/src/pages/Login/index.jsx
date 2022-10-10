@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import YupPassword from "yup-password";
+import { useState } from "react";
 YupPassword(yup);
 
 const schema = yup.object({
@@ -19,6 +20,8 @@ const schema = yup.object({
 });
 
 const Login = ({ setUser }) => {
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -31,6 +34,7 @@ const Login = ({ setUser }) => {
 
   const submit = async (data) => {
     try {
+      setLoading(true);
       const response = await api.post("/sessions", data);
       setUser(response.data.user);
       localStorage.setItem("@TOKEN", response.data.token);
@@ -49,8 +53,14 @@ const Login = ({ setUser }) => {
         theme: "dark",
       });
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
+
+  function registerUser() {
+    navigate("/register");
+  }
 
   return (
     <>
@@ -69,11 +79,15 @@ const Login = ({ setUser }) => {
               <Input type="password" id="password" {...register("password")} />
               <p>{errors.password?.message}</p>
 
-              <button type="submit">Entrar</button>
+              <button type="submit" disabled={loading}>
+                {loading ? "Entrando..." : "Entrar"}
+              </button>
             </Form>
             <div className="div__register">
               <span>Ainda não possui uma conta?</span>
-              <button className="btn__register">Cadastre-se</button>
+              <button className="btn__register" onClick={() => registerUser()}>
+                Cadastre-se
+              </button>
             </div>
           </div>
         </div>
