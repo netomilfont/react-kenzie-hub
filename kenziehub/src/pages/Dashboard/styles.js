@@ -86,27 +86,37 @@ export const Main = styled.main`
   padding: 34px 12px;
   width: 90%;
 
+  .div__main {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .div__main svg {
+    cursor: pointer;
+  }
+
+  .div__main rect {
+    transition: 0.3s;
+  }
+
+  .div__main rect:hover {
+    fill: var(--color-grey-2);
+    transition: 0.3s;
+  }
+
   h3 {
-    display: none;
+    color: var(--color-grey-0);
+    font-weight: 700;
   }
 
   h4 {
-    display: none;
+    color: var(--color-grey-0);
+    font-size: 0.875rem;
   }
 
   @media (min-width: 1024px) {
     width: 60%;
-
-    h3 {
-      display: block;
-      color: var(--color-grey-0);
-      font-weight: 700;
-    }
-
-    h4 {
-      display: block;
-      color: var(--color-grey-0);
-      font-size: 0.875rem;
-    }
   }
 `;
