@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import Button from "../../components/Button";
-import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -10,8 +9,8 @@ import {
   ModalRegister,
   ButtonPrimary,
 } from "../../components/FormRegister/style";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
+import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
 YupPassword(yup);
 
 const schema = yup.object({
@@ -40,6 +39,8 @@ const schema = yup.object({
 });
 
 const Register = () => {
+  const { userRegister } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -51,23 +52,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const submit = async (data) => {
-    try {
-      await api.post("/users", data);
-      toast.success("Conta criada com sucesso!", {
-        utoClose: 2500,
-        theme: "dark",
-      });
-
-      setTimeout(() => {
-        navigate("/");
-      }, 2500);
-    } catch (error) {
-      toast.error("Ops! Algo deu errado", {
-        autoClose: 2500,
-        theme: "dark",
-      });
-      console.log(error);
-    }
+    userRegister(data);
   };
 
   function backToLogin() {
@@ -163,7 +148,6 @@ const Register = () => {
             </div>
           </div>
         </ModalRegister>
-        <ToastContainer />
       </>
     </div>
   );

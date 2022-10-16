@@ -1,13 +1,21 @@
 import Button from "../../components/Button";
 import { Header, Logo, Section, Main } from "./styles";
-import { useNavigate } from "react-router-dom";
+import ReactModal from "react-modal";
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
-const Dashboard = ({ user, setUser }) => {
-  const navigate = useNavigate();
-  function logOut() {
-    localStorage.removeItem("@TOKEN");
-    localStorage.removeItem("@USERID");
-    navigate("/");
+ReactModal.setAppElement("#root");
+
+const Dashboard = () => {
+  const { user, userLogout } = useContext(UserContext);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function handleOpenModal() {
+    setModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setModalOpen(false);
   }
 
   return (
@@ -15,7 +23,7 @@ const Dashboard = ({ user, setUser }) => {
       <Header>
         <div className="container__header">
           <Logo>Kenzie Hub</Logo>
-          <Button name="Sair" onClick={() => logOut()} />
+          <Button name="Sair" onClick={() => userLogout()} />
         </div>
       </Header>
       <Section>
@@ -28,6 +36,7 @@ const Dashboard = ({ user, setUser }) => {
         <div className="div__main">
           <h3>Tecnologias</h3>
           <svg
+            onClick={() => handleOpenModal()}
             width="34"
             height="32"
             viewBox="0 0 34 32"
@@ -47,10 +56,15 @@ const Dashboard = ({ user, setUser }) => {
             />
           </svg>
         </div>
-        <h3>Que pena! Estamos em desenvolvimento :(</h3>
-        <h4>
-          Nossa aplicação está em desenvolvimento, em breve teremos novidades
-        </h4>
+        <ul>
+          <li>
+            <h4>React</h4>
+            <p>Intermediário</p>
+          </li>
+        </ul>
+        <ReactModal isOpen={modalOpen} onRequestClose={handleCloseModal}>
+          <h4>TESTEEEEEEEEE</h4>
+        </ReactModal>
       </Main>
     </>
   );

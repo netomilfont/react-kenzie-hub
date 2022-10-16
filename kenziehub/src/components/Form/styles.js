@@ -153,36 +153,3 @@ export const Form = styled.form`
 export const Input = styled.input`
   background-color: var(--color-grey-2);
 `;
-
-export const ModalRegister = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100%;
-  animation: appearFromTopLeft 1s;
-  margin-bottom: 20px;
-
-  .header__form {
-    display: flex;
-    width: 93%;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0;
-  }
-
-  .header__form h1 {
-    margin-bottom: 0;
-  }
-
-  button {
-    background-color: var(--color-grey-3);
-    color: var(--color-grey-0);
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    transition: 0.3s;
-    font-size: 0.675rem;
-  }
-`;

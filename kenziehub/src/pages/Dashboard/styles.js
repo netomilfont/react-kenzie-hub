@@ -116,6 +116,63 @@ export const Main = styled.main`
     font-size: 0.875rem;
   }
 
+  ul {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: var(--color-grey-3);
+    padding: 22px 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 12px;
+    background-color: var(--color-grey-4);
+    border-radius: 4px;
+    height: 49px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  ul li:hover {
+    background-color: var(--color-grey-2);
+    transition: 0.3s;
+  }
+
+  ul li h4 {
+    font-size: 0.875rem;
+    color: var(--color-grey-0);
+    font-weight: 700;
+  }
+
+  ul li p {
+    font-size: 0.75rem;
+    color: var(--color-grey-1);
+  }
+
+  .Modal {
+    position: absolute;
+    inset: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+  }
+
+  .Overlay {
+    position: fixed;
+    inset: 0px;
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+
   @media (min-width: 1024px) {
     width: 60%;
   }
