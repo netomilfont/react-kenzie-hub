@@ -71,7 +71,7 @@ const Register = () => {
             <div className="div__form">
               <Form onSubmit={handleSubmit(submit)}>
                 <h3>Crie sua conta</h3>
-                <span>Rapido e grátis, vamos nessa</span>
+                <span>Rápido e grátis, vamos nessa</span>
 
                 <label htmlFor="name">Nome</label>
                 <input

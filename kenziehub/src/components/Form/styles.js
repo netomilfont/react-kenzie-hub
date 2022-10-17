@@ -55,7 +55,7 @@ export const ModalLogin = styled.div`
 
   @media (min-width: 1024px) {
     .container__form {
-      width: 32%;
+      width: 369px;
     }
 
     .header__form {

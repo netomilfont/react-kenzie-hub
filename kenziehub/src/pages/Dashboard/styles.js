@@ -136,7 +136,6 @@ export const Main = styled.main`
     background-color: var(--color-grey-4);
     border-radius: 4px;
     height: 49px;
-    cursor: pointer;
     transition: 0.3s;
   }
 
@@ -156,21 +155,22 @@ export const Main = styled.main`
     color: var(--color-grey-1);
   }
 
-  .Modal {
-    position: absolute;
-    inset: 40px;
-    border: 1px solid rgb(204, 204, 204);
-    background: rgb(255, 255, 255);
-    overflow: auto;
-    border-radius: 4px;
-    outline: none;
-    padding: 20px;
+  .container__infoTech {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
 
-  .Overlay {
-    position: fixed;
-    inset: 0px;
-    background-color: rgba(255, 255, 255, 0.75);
+  .container__infoTech svg:hover {
+    cursor: pointer;
+    z-index: -1;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
   }
 
   @media (min-width: 1024px) {

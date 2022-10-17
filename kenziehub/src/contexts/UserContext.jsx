@@ -49,16 +49,16 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem("@TOKEN", response.data.token);
       localStorage.setItem("@USERID", response.data.user.id);
       toast.success("Login realizado com sucesso!", {
-        autoClose: 2500,
+        autoClose: 1500,
         theme: "dark",
       });
 
       setTimeout(() => {
         navigate("/dashboard");
-      }, 2500);
+      }, 1500);
     } catch (error) {
       toast.error("Ops! Algo deu errado", {
-        autoClose: 2500,
+        autoClose: 1500,
         theme: "dark",
       });
       console.log(error);
@@ -71,16 +71,16 @@ export const UserProvider = ({ children }) => {
     try {
       await api.post("/users", data);
       toast.success("Conta criada com sucesso!", {
-        utoClose: 2500,
+        autoClose: 1500,
         theme: "dark",
       });
 
       setTimeout(() => {
         navigate("/");
-      }, 2500);
+      }, 1500);
     } catch (error) {
       toast.error("Ops! Algo deu errado", {
-        autoClose: 2500,
+        autoClose: 1500,
         theme: "dark",
       });
       console.log(error);
@@ -109,6 +109,7 @@ export const UserProvider = ({ children }) => {
         globalLoading,
         userLogout,
         techsList,
+        setTechsList,
       }}
     >
       {children}
