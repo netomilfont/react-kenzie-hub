@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 export const TechsContext = createContext({});
 
-export const TechsProvider = ({ children }) => {
+const TechsProvider = ({ children }) => {
   const { techsList, setTechsList } = useContext(UserContext);
   const [cadModal, setCadModal] = useState(false);
 
@@ -85,3 +85,5 @@ export const TechsProvider = ({ children }) => {
     </TechsContext.Provider>
   );
 };
+
+export default TechsProvider;
