@@ -9,12 +9,13 @@ const ProtectedRoutes = () => {
   useEffect(() => {
     if (!user) {
       const pathname = window.location.pathname;
+
       if (pathname !== "/") {
         setCurrentRoute(pathname);
       }
       navigate("/");
     }
-  });
+  }, []);
 
   return <>{user && <Outlet />}</>;
 };

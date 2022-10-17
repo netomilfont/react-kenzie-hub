@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { Loading } from "./styles";
 
 const GlobalLoading = ({ children }) => {
   const { globalLoading } = useContext(UserContext);
-  return <>{globalLoading ? <h1>Carregando...</h1> : <>{children}</>}</>;
+  return <>{globalLoading ? <Loading></Loading> : <>{children}</>}</>;
 };
 
 export default GlobalLoading;

@@ -3,12 +3,14 @@ import { Header, Logo, Section, Main } from "./styles";
 import ReactModal from "react-modal";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { TechsContext } from "../../contexts/TechsContext";
 
 ReactModal.setAppElement("#root");
 
 const Dashboard = () => {
   const { user, userLogout } = useContext(UserContext);
   const [modalOpen, setModalOpen] = useState(false);
+  const { techsList } = useContext(TechsContext);
 
   function handleOpenModal() {
     setModalOpen(true);
@@ -57,10 +59,16 @@ const Dashboard = () => {
           </svg>
         </div>
         <ul>
-          <li>
-            <h4>React</h4>
-            <p>Intermediário</p>
-          </li>
+          {techsList.length === 0 ? (
+            <h4>Você não possui uma tecnologia cadastrada!</h4>
+          ) : (
+            techsList.map((tech) => (
+              <li>
+                <h4>{tech.title}</h4>
+                <p>{tech.status}</p>
+              </li>
+            ))
+          )}
         </ul>
         <ReactModal isOpen={modalOpen} onRequestClose={handleCloseModal}>
           <h4>TESTEEEEEEEEE</h4>

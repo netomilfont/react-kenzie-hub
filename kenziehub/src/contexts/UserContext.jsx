@@ -8,8 +8,9 @@ export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [globalLoading, setGlobalLoading] = useState();
-  const [user, setUser] = useState([null]);
+  const [user, setUser] = useState(null);
   const [currentRoute, setCurrentRoute] = useState(null);
+  const [techsList, setTechsList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -25,17 +26,20 @@ export const UserProvider = ({ children }) => {
             },
           });
           setUser(response.data);
-          navigate(currentRoute);
+          setTechsList(response.data.techs);
+          navigate(currentRoute ? currentRoute : "/dashboard");
           console.log(response);
         } catch (error) {
+          console.log(error);
           localStorage.removeItem("@TOKEN");
+          localStorage.removeItem("@USERID");
           navigate("/");
         } finally {
           setGlobalLoading(false);
         }
       }
     })();
-  });
+  }, []);
 
   const userLogin = async (data, setLoading) => {
     try {
@@ -104,6 +108,7 @@ export const UserProvider = ({ children }) => {
         setCurrentRoute,
         globalLoading,
         userLogout,
+        techsList,
       }}
     >
       {children}

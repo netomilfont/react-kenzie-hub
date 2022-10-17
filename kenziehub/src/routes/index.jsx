@@ -6,7 +6,7 @@ import Register from "../pages/Register";
 
 const RoutesMain = () => (
   <Routes>
-    <Route path="/" element={<Login />} />
+    <Route index path="/" element={<Login />} />
     <Route path="/register" element={<Register />} />
 
     <Route path="/dashboard" element={<ProtectedRoutes />}>
