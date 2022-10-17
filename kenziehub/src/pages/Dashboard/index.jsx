@@ -14,7 +14,7 @@ const Dashboard = () => {
   const { user, userLogout } = useContext(UserContext);
   const { techsList, cadModal, setCadModal, userTechsDelete } =
     useContext(TechsContext);
-
+  console.log(techsList);
   return (
     <>
       <Header>

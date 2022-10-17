@@ -4,7 +4,7 @@ import "./App.css";
 import { UserProvider } from "./contexts/UserContext";
 import GlobalLoading from "./components/GlobalLoading";
 import { ToastContainer } from "react-toastify";
-import { TechsProvider } from "./contexts/TechsContext";
+import TechsProvider from "./contexts/TechsContext";
 
 function App() {
   return (

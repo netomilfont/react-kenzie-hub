@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import { set } from "react-hook-form";
 
 export const UserContext = createContext({});
 
@@ -45,6 +46,7 @@ export const UserProvider = ({ children }) => {
       setLoading(true);
       const response = await api.post("/sessions", data);
       setUser(response.data.user);
+      setTechsList(response.data.user.techs);
       localStorage.setItem("@TOKEN", response.data.token);
       localStorage.setItem("@USERID", response.data.user.id);
       toast.success("Login realizado com sucesso!", {
