@@ -28,7 +28,6 @@ export const UserProvider = ({ children }) => {
           setUser(response.data);
           setTechsList(response.data.techs);
           navigate(currentRoute ? currentRoute : "/dashboard");
-          console.log(response);
         } catch (error) {
           console.log(error);
           localStorage.removeItem("@TOKEN");
@@ -93,6 +92,7 @@ export const UserProvider = ({ children }) => {
       theme: "dark",
     });
     setUser(null);
+    setTechsList([]);
     navigate("/");
     localStorage.removeItem("@TOKEN");
     localStorage.removeItem("@USERID");

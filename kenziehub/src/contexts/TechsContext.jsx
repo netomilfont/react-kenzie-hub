@@ -19,8 +19,6 @@ export const TechsProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      console.log(response);
-
       const newData = [
         ...techsList,
         {
@@ -47,7 +45,6 @@ export const TechsProvider = ({ children }) => {
   };
 
   const userTechsDelete = async (clickedTech, setLoading) => {
-    console.log(clickedTech);
     try {
       setLoading(true);
       const token = localStorage.getItem("@TOKEN");

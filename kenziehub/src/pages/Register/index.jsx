@@ -134,12 +134,18 @@ const Register = () => {
                   {...register("course_module")}
                 >
                   <option value="">Módulos aqui</option>
-                  <option value="Módulo 1">Módulo 1</option>
-                  <option value="Módulo 2">Módulo 2</option>
-                  <option value="Módulo 3">Módulo 3</option>
-                  <option value="Módulo 4">Módulo 4</option>
-                  <option value="Módulo 5">Módulo 5</option>
-                  <option value="Módulo 6">Módulo 6</option>
+                  <option value="Primeiro módulo (Introdução ao Frontend)">
+                    Primeiro módulo (Introdução ao Frontend)
+                  </option>
+                  <option value="Segundo módulo (Frontend Avançado)">
+                    Segundo módulo (Frontend Avançado)
+                  </option>
+                  <option value="Terceiro módulo (Introdução ao Backend)">
+                    Terceiro módulo (Introdução ao Backend)
+                  </option>
+                  <option value="Quarto módulo (Backend Avançado)">
+                    Quarto módulo (Backend Avançado)
+                  </option>
                 </select>
                 <p>{errors.course_module?.message}</p>
 
