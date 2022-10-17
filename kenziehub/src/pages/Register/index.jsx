@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import Button from "../../components/Button";
-import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -10,8 +9,8 @@ import {
   ModalRegister,
   ButtonPrimary,
 } from "../../components/FormRegister/style";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
+import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
 YupPassword(yup);
 
 const schema = yup.object({
@@ -40,6 +39,8 @@ const schema = yup.object({
 });
 
 const Register = () => {
+  const { userRegister } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -51,23 +52,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const submit = async (data) => {
-    try {
-      await api.post("/users", data);
-      toast.success("Conta criada com sucesso!", {
-        utoClose: 2500,
-        theme: "dark",
-      });
-
-      setTimeout(() => {
-        navigate("/");
-      }, 2500);
-    } catch (error) {
-      toast.error("Ops! Algo deu errado", {
-        autoClose: 2500,
-        theme: "dark",
-      });
-      console.log(error);
-    }
+    userRegister(data);
   };
 
   function backToLogin() {
@@ -86,7 +71,7 @@ const Register = () => {
             <div className="div__form">
               <Form onSubmit={handleSubmit(submit)}>
                 <h3>Crie sua conta</h3>
-                <span>Rapido e grátis, vamos nessa</span>
+                <span>Rápido e grátis, vamos nessa</span>
 
                 <label htmlFor="name">Nome</label>
                 <input
@@ -149,12 +134,18 @@ const Register = () => {
                   {...register("course_module")}
                 >
                   <option value="">Módulos aqui</option>
-                  <option value="Módulo 1">Módulo 1</option>
-                  <option value="Módulo 2">Módulo 2</option>
-                  <option value="Módulo 3">Módulo 3</option>
-                  <option value="Módulo 4">Módulo 4</option>
-                  <option value="Módulo 5">Módulo 5</option>
-                  <option value="Módulo 6">Módulo 6</option>
+                  <option value="Primeiro módulo (Introdução ao Frontend)">
+                    Primeiro módulo (Introdução ao Frontend)
+                  </option>
+                  <option value="Segundo módulo (Frontend Avançado)">
+                    Segundo módulo (Frontend Avançado)
+                  </option>
+                  <option value="Terceiro módulo (Introdução ao Backend)">
+                    Terceiro módulo (Introdução ao Backend)
+                  </option>
+                  <option value="Quarto módulo (Backend Avançado)">
+                    Quarto módulo (Backend Avançado)
+                  </option>
                 </select>
                 <p>{errors.course_module?.message}</p>
 
@@ -163,7 +154,6 @@ const Register = () => {
             </div>
           </div>
         </ModalRegister>
-        <ToastContainer />
       </>
     </div>
   );

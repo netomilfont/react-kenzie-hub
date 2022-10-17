@@ -1,14 +1,12 @@
 // import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Input, Title, ModalLogin } from "../../components/Form/styles";
-import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
 import YupPassword from "yup-password";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/UserContext";
 YupPassword(yup);
 
 const schema = yup.object({
@@ -19,7 +17,8 @@ const schema = yup.object({
   password: yup.string().required("A senha é obrigatória"),
 });
 
-const Login = ({ setUser }) => {
+const Login = () => {
+  const { userLogin } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
 
   const {
@@ -33,29 +32,7 @@ const Login = ({ setUser }) => {
   const navigate = useNavigate();
 
   const submit = async (data) => {
-    try {
-      setLoading(true);
-      const response = await api.post("/sessions", data);
-      setUser(response.data.user);
-      localStorage.setItem("@TOKEN", response.data.token);
-      localStorage.setItem("@USERID", response.data.user.id);
-      toast.success("Login realizado com sucesso!", {
-        autoClose: 2500,
-        theme: "dark",
-      });
-
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2500);
-    } catch (error) {
-      toast.error("Ops! Algo deu errado", {
-        autoClose: 2500,
-        theme: "dark",
-      });
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+    userLogin(data, setLoading);
   };
 
   function registerUser() {
@@ -92,7 +69,6 @@ const Login = ({ setUser }) => {
           </div>
         </div>
       </ModalLogin>
-      <ToastContainer />
     </>
   );
 };

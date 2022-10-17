@@ -86,27 +86,94 @@ export const Main = styled.main`
   padding: 34px 12px;
   width: 90%;
 
+  .div__main {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .div__main svg {
+    cursor: pointer;
+  }
+
+  .div__main rect {
+    transition: 0.3s;
+  }
+
+  .div__main rect:hover {
+    fill: var(--color-grey-2);
+    transition: 0.3s;
+  }
+
   h3 {
-    display: none;
+    color: var(--color-grey-0);
+    font-weight: 700;
   }
 
   h4 {
-    display: none;
+    color: var(--color-grey-0);
+    font-size: 0.875rem;
+  }
+
+  ul {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: var(--color-grey-3);
+    padding: 22px 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 12px;
+    background-color: var(--color-grey-4);
+    border-radius: 4px;
+    height: 49px;
+    transition: 0.3s;
+  }
+
+  ul li:hover {
+    background-color: var(--color-grey-2);
+    transition: 0.3s;
+  }
+
+  ul li h4 {
+    font-size: 0.875rem;
+    color: var(--color-grey-0);
+    font-weight: 700;
+  }
+
+  ul li p {
+    font-size: 0.75rem;
+    color: var(--color-grey-1);
+  }
+
+  .container__infoTech {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .container__infoTech svg:hover {
+    cursor: pointer;
+    z-index: -1;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
   }
 
   @media (min-width: 1024px) {
     width: 60%;
-
-    h3 {
-      display: block;
-      color: var(--color-grey-0);
-      font-weight: 700;
-    }
-
-    h4 {
-      display: block;
-      color: var(--color-grey-0);
-      font-size: 0.875rem;
-    }
   }
 `;
