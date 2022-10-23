@@ -3,7 +3,7 @@ import { Header, Logo, Section, Main } from "./styles";
 import ReactModal from "react-modal";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { TechsContext } from "../../contexts/TechsContext";
+import { TechsContext } from "../../contexts/TechsContext/TechsContext";
 import ModalCadTech from "../../components/ModalCadTech";
 import { Loading } from "../../components/GlobalLoading/styles";
 

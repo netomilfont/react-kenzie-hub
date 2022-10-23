@@ -3,7 +3,7 @@ import * as yup from "yup";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ModalBackground, Modal, ModalHeader, ModalBody } from "./styles";
-import { TechsContext } from "../../contexts/TechsContext";
+import { TechsContext } from "../../contexts/TechsContext/TechsContext";
 
 const schema = yup.object({
   title: yup.string().required("O nome da tecnologia é obrigatório"),

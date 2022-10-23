@@ -1,17 +1,20 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../services/api";
+import api from "../../services/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { set } from "react-hook-form";
+import { ILoginFormData } from "../../pages/Login";
+import { IRegisterFormData } from "../../pages/Register";
+import { IUser, ITechs, IDefaultContextProps } from "../types/types";
+import { IUserContext, iLoginResponse } from "./types";
 
-export const UserContext = createContext({});
+export const UserContext = createContext({} as IUserContext);
 
-export const UserProvider = ({ children }) => {
-  const [globalLoading, setGlobalLoading] = useState();
-  const [user, setUser] = useState(null);
-  const [currentRoute, setCurrentRoute] = useState(null);
-  const [techsList, setTechsList] = useState([]);
+export const UserProvider = ({ children }: IDefaultContextProps) => {
+  const [globalLoading, setGlobalLoading] = useState(false);
+  const [user, setUser] = useState<IUser | null>(null);
+  const [currentRoute, setCurrentRoute] = useState<string | null>(null);
+  const [techsList, setTechsList] = useState([] as ITechs[]);
 
   const navigate = useNavigate();
 
@@ -41,12 +44,17 @@ export const UserProvider = ({ children }) => {
     })();
   }, []);
 
-  const userLogin = async (data, setLoading) => {
+  const userLogin = async (
+    data: ILoginFormData,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
     try {
       setLoading(true);
-      const response = await api.post("/sessions", data);
+      const response = await api.post<iLoginResponse>("/sessions", data);
+
       setUser(response.data.user);
       setTechsList(response.data.user.techs);
+
       localStorage.setItem("@TOKEN", response.data.token);
       localStorage.setItem("@USERID", response.data.user.id);
       toast.success("Login realizado com sucesso!", {
@@ -68,7 +76,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const userRegister = async (data) => {
+  const userRegister = async (data: IRegisterFormData) => {
     try {
       await api.post("/users", data);
       toast.success("Conta criada com sucesso!", {

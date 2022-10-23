@@ -13,6 +13,16 @@ import { UserContext } from "../../contexts/UserContext";
 import { useContext } from "react";
 YupPassword(yup);
 
+export interface IRegisterFormData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+}
+
 const schema = yup.object({
   name: yup.string().required("O nome é obrigatório"),
   email: yup
@@ -45,13 +55,13 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IRegisterFormData>({
     resolver: yupResolver(schema),
   });
 
   const navigate = useNavigate();
 
-  const submit = async (data) => {
+  const submit = async (data: IRegisterFormData) => {
     userRegister(data);
   };
 
@@ -128,11 +138,7 @@ const Register = () => {
                 <p>{errors.contact?.message}</p>
 
                 <label htmlFor="modulo">Selecionar módulo</label>
-                <select
-                  name=""
-                  id="course_module"
-                  {...register("course_module")}
-                >
+                <select id="course_module" {...register("course_module")}>
                   <option value="">Módulos aqui</option>
                   <option value="Primeiro módulo (Introdução ao Frontend)">
                     Primeiro módulo (Introdução ao Frontend)
