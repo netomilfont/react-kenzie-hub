@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -11,17 +10,8 @@ import {
 } from "../../components/FormRegister/style";
 import { UserContext } from "../../contexts/UserContext";
 import { useContext } from "react";
+import { IRegisterFormData } from "./types";
 YupPassword(yup);
-
-export interface IRegisterFormData {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  bio: string;
-  contact: string;
-  course_module: string;
-}
 
 const schema = yup.object({
   name: yup.string().required("O nome é obrigatório"),
@@ -75,7 +65,7 @@ const Register = () => {
         <ModalRegister>
           <div className="header__form">
             <Title>KenzieHub</Title>
-            <Button name="Voltar" onClick={() => backToLogin()} />
+            <button name="Voltar" onClick={() => backToLogin()}></button>
           </div>
           <div className="container__form">
             <div className="div__form">

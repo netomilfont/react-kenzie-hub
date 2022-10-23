@@ -1,6 +1,5 @@
 import Routes from "./routes";
 import Global from "./styles/global";
-import "./App.css";
 import { UserProvider } from "./contexts/UserContext";
 import GlobalLoading from "./components/GlobalLoading";
 import { ToastContainer } from "react-toastify";

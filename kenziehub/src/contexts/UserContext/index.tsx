@@ -6,7 +6,12 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { ILoginFormData } from "../../pages/Login";
 import { IRegisterFormData } from "../../pages/Register";
 import { IUser, ITechs, IDefaultContextProps } from "../types/types";
-import { IUserContext, iLoginResponse } from "./types";
+import {
+  IUserContext,
+  iLoginResponse,
+  IRegisterResponse,
+  IUserResponse,
+} from "./types";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -24,7 +29,7 @@ export const UserProvider = ({ children }: IDefaultContextProps) => {
       if (token) {
         setGlobalLoading(true);
         try {
-          const response = await api.get("profile", {
+          const response = await api.get<IUserResponse>("profile", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -70,7 +75,6 @@ export const UserProvider = ({ children }: IDefaultContextProps) => {
         autoClose: 1500,
         theme: "dark",
       });
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -78,7 +82,7 @@ export const UserProvider = ({ children }: IDefaultContextProps) => {
 
   const userRegister = async (data: IRegisterFormData) => {
     try {
-      await api.post("/users", data);
+      await api.post<IRegisterResponse>("/users", data);
       toast.success("Conta criada com sucesso!", {
         autoClose: 1500,
         theme: "dark",

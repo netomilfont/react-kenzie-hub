@@ -1,5 +1,16 @@
 import { ITechs } from "../types/types";
 
+export interface ITechsResponse {
+  id: string;
+  status: string;
+  title: string;
+  updated_at: string;
+  created_at: string;
+  user: {
+    id: string;
+  };
+}
+
 export interface ITechsContext {
   userTechs: (
     data: ITechs,

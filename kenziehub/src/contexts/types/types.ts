@@ -8,7 +8,7 @@ export interface IWorks {
 }
 
 export interface ITechs {
-  id: string;
+  id?: string;
   title: string;
   status: string;
 }
@@ -24,7 +24,7 @@ export interface IUser {
   updated_at: string;
   techs: ITechs[];
   works: IWorks[];
-  avatar_url: string;
+  avatar_url: string | null;
 }
 
 export interface IDefaultContextProps {

@@ -1,10 +1,36 @@
 import { ILoginFormData } from "../../pages/Login";
-import { IRegisterFormData } from "../../pages/Register";
-import { IUser, ITechs } from "../types/types";
+import { IRegisterFormData } from "../../pages/Register/types";
+import { IUser, ITechs, IWorks } from "../types/types";
 
 export interface iLoginResponse {
   user: IUser;
   token: string;
+}
+
+export interface IRegisterResponse {
+  id: string;
+  name: string;
+  emai: string;
+  course_module: string;
+  bio: string;
+  contact: string;
+  created_at: string;
+  updated_at: string;
+  avatar_url: string | null;
+}
+
+export interface IUserResponse {
+  id: string;
+  name: string;
+  email: string;
+  course_module: string;
+  bio: string;
+  contact: string;
+  created_at: string;
+  updated_at: string;
+  techs: ITechs[];
+  works: IWorks[];
+  avatar_url: string | null;
 }
 
 export interface IUserContext {

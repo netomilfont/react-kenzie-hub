@@ -4,7 +4,7 @@ import { UserContext } from "../UserContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { IDefaultContextProps, ITechs } from "../types/types";
-import { ITechsContext } from "./types";
+import { ITechsContext, ITechsResponse } from "./types";
 
 export const TechsContext = createContext({} as ITechsContext);
 
@@ -20,7 +20,7 @@ const TechsProvider = ({ children }: IDefaultContextProps) => {
       setLoading(true);
       const token = localStorage.getItem("@TOKEN");
 
-      const response = await api.post("users/techs", data, {
+      const response = await api.post<ITechsResponse>("users/techs", data, {
         headers: { Authorization: `Bearer ${token as string}` },
       });
 
