@@ -4,7 +4,6 @@ import api from "../../services/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { ILoginFormData } from "../../pages/Login";
-import { IRegisterFormData } from "../../pages/Register";
 import { IUser, ITechs, IDefaultContextProps } from "../types/types";
 import {
   IUserContext,
@@ -12,6 +11,7 @@ import {
   IRegisterResponse,
   IUserResponse,
 } from "./types";
+import { IRegisterFormData } from "../../pages/Register/types";
 
 export const UserContext = createContext({} as IUserContext);
 
