@@ -1,28 +1,26 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ModalBackground, Modal, ModalHeader, ModalBody } from "./styles";
-import { TechsContext } from "../../contexts/TechsContext";
+import { TechsContext } from "../../contexts/TechsContext/TechsContext";
+import { ITechs } from "../../contexts/types/types";
+import { IModal } from "./types";
 
 const schema = yup.object({
   title: yup.string().required("O nome da tecnologia é obrigatório"),
   status: yup.string().required("O status da tecnolgia é obrigatório"),
 });
 
-const ModalCadTech = ({ closeModal }) => {
+const ModalCadTech = ({ closeModal }: IModal) => {
   const [loading, setLoading] = useState(false);
   const { userTechs } = useContext(TechsContext);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm<ITechs>({
     resolver: yupResolver(schema),
   });
 
-  const submit = async (data) => {
+  const submit = async (data: ITechs) => {
     userTechs(data, setLoading);
   };
 
@@ -38,16 +36,14 @@ const ModalCadTech = ({ closeModal }) => {
           </ModalHeader>
           <ModalBody className="modal__body">
             <label htmlFor="name">Nome</label>
-            <input type="text" name="name" {...register("title")} />
-            <p>{errors.name?.message}</p>
+            <input type="text" {...register("title")} />
 
             <label htmlFor="select">Selecionar status</label>
-            <select name="select" {...register("status")}>
+            <select {...register("status")}>
               <option value="Iniciante">Iniciante</option>
               <option value="Intermediário">Intermediário</option>
               <option value="Avançado">Avançado</option>
             </select>
-            <p>{errors.select?.message}</p>
 
             <button type="submit" disabled={loading}>
               {loading ? "Cadastrando..." : "Cadastrar Tecnologia"}

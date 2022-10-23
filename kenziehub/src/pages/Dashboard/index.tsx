@@ -1,9 +1,8 @@
-import Button from "../../components/Button";
 import { Header, Logo, Section, Main } from "./styles";
 import ReactModal from "react-modal";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { TechsContext } from "../../contexts/TechsContext";
+import { TechsContext } from "../../contexts/TechsContext/TechsContext";
 import ModalCadTech from "../../components/ModalCadTech";
 import { Loading } from "../../components/GlobalLoading/styles";
 
@@ -12,21 +11,21 @@ ReactModal.setAppElement("#root");
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const { user, userLogout } = useContext(UserContext);
-  const { techsList, cadModal, setCadModal, userTechsDelete } =
-    useContext(TechsContext);
-  console.log(techsList);
+  const { techsList } = useContext(UserContext);
+  const { cadModal, setCadModal, userTechsDelete } = useContext(TechsContext);
+
   return (
     <>
       <Header>
         <div className="container__header">
           <Logo>Kenzie Hub</Logo>
-          <Button name="Sair" onClick={() => userLogout()} />
+          <button onClick={() => userLogout()}>Sair</button>
         </div>
       </Header>
       <Section>
         <div className="container__section">
-          <h3>Olá, {user.name} </h3>
-          <p>{user.course_module}</p>
+          <h3>Olá, {user?.name} </h3>
+          <p>{user?.course_module}</p>
         </div>
       </Section>
       <Main>

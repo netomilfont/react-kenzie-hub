@@ -9,6 +9,11 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 YupPassword(yup);
 
+export interface ILoginFormData {
+  email: string;
+  password: string;
+}
+
 const schema = yup.object({
   email: yup
     .string()
@@ -25,13 +30,13 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ILoginFormData>({
     resolver: yupResolver(schema),
   });
 
   const navigate = useNavigate();
 
-  const submit = async (data) => {
+  const submit = async (data: ILoginFormData) => {
     userLogin(data, setLoading);
   };
 

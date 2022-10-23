@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -11,6 +10,7 @@ import {
 } from "../../components/FormRegister/style";
 import { UserContext } from "../../contexts/UserContext";
 import { useContext } from "react";
+import { IRegisterFormData } from "./types";
 YupPassword(yup);
 
 const schema = yup.object({
@@ -45,13 +45,13 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IRegisterFormData>({
     resolver: yupResolver(schema),
   });
 
   const navigate = useNavigate();
 
-  const submit = async (data) => {
+  const submit = async (data: IRegisterFormData) => {
     userRegister(data);
   };
 
@@ -65,7 +65,7 @@ const Register = () => {
         <ModalRegister>
           <div className="header__form">
             <Title>KenzieHub</Title>
-            <Button name="Voltar" onClick={() => backToLogin()} />
+            <button name="Voltar" onClick={() => backToLogin()}></button>
           </div>
           <div className="container__form">
             <div className="div__form">
@@ -128,11 +128,7 @@ const Register = () => {
                 <p>{errors.contact?.message}</p>
 
                 <label htmlFor="modulo">Selecionar módulo</label>
-                <select
-                  name=""
-                  id="course_module"
-                  {...register("course_module")}
-                >
+                <select id="course_module" {...register("course_module")}>
                   <option value="">Módulos aqui</option>
                   <option value="Primeiro módulo (Introdução ao Frontend)">
                     Primeiro módulo (Introdução ao Frontend)
